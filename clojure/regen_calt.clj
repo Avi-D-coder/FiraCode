@@ -117,8 +117,6 @@
   ["less" "asterisk" "greater"]
   ["less" "plus" "greater"]
   ["less" "dollar" "greater"]
-  ;; #795
-  ["f" "l"] ["F" "l"] ["T" "l"]
 })
 
 ;; DO NOT generate ligature
@@ -137,9 +135,8 @@
     2 (let [[a b] liga]
         (str/replace
           (str "lookup 1_2 {\n"
-               (when-not (skip-ignores? liga)
-                 (str "  ignore sub 1 1' 2;\n"
-                      "  ignore sub 1' 2 2;\n"))
+               "  ignore sub 1 1' 2;\n"
+               "  ignore sub 1' 2 2;\n"
                (gen-ignore-prefixes liga)
                (get ignores liga)
                "  sub LIG 2' by 1_2.liga;\n"
@@ -162,9 +159,8 @@
     4 (let [[a b c d] liga]
         (str/replace
           (str "lookup 1_2_3_4 {\n"
-               (when-not (skip-ignores? liga)
-                 (str "  ignore sub 1 1' 2 3 4;\n"
-                      "  ignore sub 1' 2 3 4 4;\n"))
+               "  ignore sub 1 1' 2 3 4;\n"
+               "  ignore sub 1' 2 3 4 4;\n"
                (gen-ignore-prefixes liga)
                (get ignores liga)
                "  sub LIG LIG LIG 4' by 1_2_3_4.liga;\n"
